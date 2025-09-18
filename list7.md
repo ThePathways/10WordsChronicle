@@ -1,10 +1,10 @@
 Smile
 Grin
-Snicker
 Chuckle
 Laugh
 Giggle
+Guffaw
+Snicker
 Smirk
 Cackle
-Guffaw
 Titter
