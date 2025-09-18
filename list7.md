@@ -1,0 +1,10 @@
+Smile
+Grin
+Snicker
+Chuckle
+Laugh
+Giggle
+Smirk
+Cackle
+Guffaw
+Titter
