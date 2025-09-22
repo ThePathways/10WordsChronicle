@@ -24,6 +24,7 @@ jobs:
               echo -e "\n-------------\n" >> "$output"
             else
               # Number words for all other files
+              echo "### File: file.md" >> "$output"
               tr ' ' '\n' < "$file" | nl -w1 -s'. ' >> "$output"
               echo -e "\n-------------\n" >> "$output"
             fi
