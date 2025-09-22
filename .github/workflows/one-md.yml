@@ -22,7 +22,7 @@ jobs:
 
           # Step 1: Generate combined content from all other .md files (except README.md)
           echo "" > "$temp_generated"
-          find . -type f -name "*.md" ! -name "README.md" | sort -V | while read -r file; do
+          find . -type f -name "*.md" ! -name "README.md" ! "__generated.md" | sort -V | while read -r file; do
             echo -e "\n### File: $(basename "$file")" >> "$temp_generated"
             tr ' ' '\n' < "$file" | nl -w1 -s'. ' >> "$temp_generated"
             echo -e "\n-------------\n" >> "$temp_generated"
