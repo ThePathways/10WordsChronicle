@@ -18,48 +18,6 @@ I’ll post whenever I’m ready, making sure to revise and reflect on past word
 
 -------------
 
-### File: list10.md
-1. Abase
-2. Abash
-3. Abate
-4. Abbreviate
-5. Abdicate
-6. Aberrant
-7. Abet
-8. Abeyance
-9. Abject
-10. Abjure
-
--------------
-
-### File: list11.md
-1. Abscission
-2. Abscond
-3. Abstemious
-4. Abysmal
-5. Plung
-6. Accretion
-7. Accrue
-8. Adamant
-9. Adjunct
-10. Admonish
-
--------------
-
-### File: list12.md
-1. Adulterate
-2. Aesthetic
-3. Affected
-4. Affinity
-5. Aggrandize
-6. Aggregate
-7. Alacrity
-8. Alchemy
-9. Allay
-10. Alleviate
-
--------------
-
 ### File: list2.md
 1. Aberrant
 2. Cacophony
@@ -169,6 +127,48 @@ I’ll post whenever I’m ready, making sure to revise and reflect on past word
 8. Misentrope
 9. Misogynist
 10. Misogamist
+
+-------------
+
+### File: list10.md
+1. Abase
+2. Abash
+3. Abate
+4. Abbreviate
+5. Abdicate
+6. Aberrant
+7. Abet
+8. Abeyance
+9. Abject
+10. Abjure
+
+-------------
+
+### File: list11.md
+1. Abscission
+2. Abscond
+3. Abstemious
+4. Abysmal
+5. Plung
+6. Accretion
+7. Accrue
+8. Adamant
+9. Adjunct
+10. Admonish
+
+-------------
+
+### File: list12.md
+1. Adulterate
+2. Aesthetic
+3. Affected
+4. Affinity
+5. Aggrandize
+6. Aggregate
+7. Alacrity
+8. Alchemy
+9. Allay
+10. Alleviate
 
 -------------
 
