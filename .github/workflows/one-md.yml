@@ -3,7 +3,7 @@ name: Combine Markdown Files
 on:
   push:
     paths:
-      - '**.md'  # Run when any Markdown file changes
+      - '**/*.md'  # Trigger only when .md files change
 
 jobs:
   combine:
@@ -14,12 +14,14 @@ jobs:
 
       - name: Combine .md files into combined.md
         run: |
-          echo "" > combined.md
-          for file in $(find . -type f -name "*.md" ! -name "one.md" | sort); do
-            echo "### File: $file" >> combined.md
-            echo "" >> combined.md
-            cat "$file" >> combined.md
-            echo -e "\n-------------\n" >> combined.md
+          output="one.md"
+          echo "" > "$output"
+          # Find all markdown files excluding 'combined.md'
+          find . -type f -name "*.md" ! -name "$output" | sort | while read -r file; do
+            echo "### File: $file" >> "$output"
+            echo "" >> "$output"
+            cat "$file" >> "$output"
+            echo -e "\n-------------\n" >> "$output"
           done
 
       - name: Commit and push combined.md
@@ -27,5 +29,5 @@ jobs:
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git add combined.md
-          git commit -m "Auto-update combined.md after .md change" || echo "No changes to commit"
+          git diff --cached --quiet && echo "No changes to commit" || git commit -m "Auto-update combined.md after .md change"
           git push
