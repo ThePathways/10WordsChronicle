@@ -19,16 +19,15 @@ jobs:
           output="README.md"
           temp_append="__append.md"
 
-          # Collect content of all .md files (except README.md)
+          # Step 1: Collect content from all .md files (except README.md) into a temporary file
           find . -type f -name "*.md" ! -name "README.md" | sort -V | xargs cat > "$temp_append"
 
-          # If the content changes, append to README.md
-          if ! cmp -s "$output" "$temp_append"; then
-            echo "" >> "$output"  # Add a newline before appending
-            cat "$temp_append" >> "$output"
-          fi
+          # Step 2: Append the content from temp_append to README.md
+          # Ensure there's no conflict between reading and writing by using a temporary file
+          echo "" >> "$output"  # Add a newline before appending
+          cat "$temp_append" >> "$output"
 
-          # Clean up temporary file
+          # Step 3: Clean up temporary file
           rm -f "$temp_append"
 
       - name: Commit and push updated README.md
