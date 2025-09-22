@@ -23,7 +23,7 @@ jobs:
           cp "$original_readme" "$temp_combined"
 
           # Append processed .md files (excluding README.md and one.md)
-          find . -type f -name "*.md" ! -name "README.md" ! -name "one.md" | sort -V | while read -r file; do
+          find . -type f -name "*.md" ! -name "README.md" | sort -V | while read -r file; do
             echo -e "\n### File: $(basename "$file")" >> "$temp_combined"
             tr ' ' '\n' < "$file" | nl -w1 -s'. ' >> "$temp_combined"
             echo -e "\n-------------\n" >> "$temp_combined"
