@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main  # You can change this to whichever branch you want to trigger the workflow from
+  workflow_dispatch:  # This allows manual trigger from GitHub UI
 
 jobs:
   append-docs:
