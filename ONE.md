@@ -148,19 +148,13 @@ I’ll post whenever I’m ready, making sure to revise and reflect on past word
 1. Awake
 2. Drowse
 3. Doze
-   
-   
-4. (unintentional
-5. sleep)
-6. Snooze
-7. (intentional
-8. nap)
-9. Catnap
-10. Nap
-11. Siesta
-12. Sleep
-13. Slumber
-14. Dream
+4. Snooze
+5. Catnap
+6. Nap
+7. Siesta
+8. Sleep
+9. Slumber
+10. Dream
 
 -------------
 
