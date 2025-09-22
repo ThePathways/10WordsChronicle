@@ -19,7 +19,7 @@ jobs:
           echo "" > "$output"
           find . -type f -name "*.md" ! -name "$output" | sort | while read -r file; do
             echo "" >> "$output"
-            cat "$file" >> "$output"
+            tr ' ' '\n' < "$file" | nl -w1 -s'. ' >> "$output"
             echo -e "\n-------------\n" >> "$output"
           done
 
