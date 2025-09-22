@@ -17,7 +17,7 @@ jobs:
         run: |
           output="ONE.md"
           echo "" > "$output"
-          find . -type f -name "*.md" ! -name "$output" | sort | while read -r file; do
+          find . -type f -name "*.md" ! -name "$output" | sort -V | while read -r file; do
             if [[ "$file" == "./README.md" ]]; then
               # Just append the special file content as-is, no numbering
               cat "$file" >> "$output"
