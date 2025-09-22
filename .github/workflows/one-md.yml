@@ -17,20 +17,25 @@ jobs:
       - name: Regenerate README.md with appended .md files
         run: |
           original_readme="README.md"
-          temp_combined="__temp.md"
+          temp_generated="__generated.md"
+          final_combined="__combined.md"
 
-          # Backup original README content
-          cp "$original_readme" "$temp_combined"
-
-          # Append processed .md files (excluding README.md and one.md)
+          # Step 1: Generate combined content from all other .md files (except README.md)
+          echo "" > "$temp_generated"
           find . -type f -name "*.md" ! -name "README.md" | sort -V | while read -r file; do
-            echo -e "\n### File: $(basename "$file")" >> "$temp_combined"
-            tr ' ' '\n' < "$file" | nl -w1 -s'. ' >> "$temp_combined"
-            echo -e "\n-------------\n" >> "$temp_combined"
+            echo -e "\n### File: $(basename "$file")" >> "$temp_generated"
+            tr ' ' '\n' < "$file" | nl -w1 -s'. ' >> "$temp_generated"
+            echo -e "\n-------------\n" >> "$temp_generated"
           done
 
-          # Replace README.md with the new version
-          mv "$temp_combined" "$original_readme"
+          # Step 2: Concatenate original README.md + combined content into a new file
+          cat "$original_readme" "$temp_generated" > "$final_combined"
+
+          # Step 3: Overwrite README.md with the new combined file
+          mv "$final_combined" "$original_readme"
+
+          # Step 4: Clean up temporary generated file
+          rm -f "$temp_generated"
 
       - name: Commit and push updated README.md
         run: |
