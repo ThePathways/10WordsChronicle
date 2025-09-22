@@ -1,0 +1,10 @@
+Abscission
+Abscond
+Abstemious
+Abysmal
+Plung
+Accretion
+Accrue
+Adamant
+Adjunct
+Admonish
