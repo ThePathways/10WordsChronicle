@@ -22,7 +22,7 @@ jobs:
           count=1
 
           # Loop over all .md files except README.md and append them to README.md
-          for file in $(ls *.md | grep -v 'README.md' | sort); do
+          for file in $(ls *.md | grep -v 'README.md' | sort -V); do
             # Append numbered list entry and file content to README.md
             echo -e "$count. **$file**" >> README.md
             cat "$file" >> README.md
