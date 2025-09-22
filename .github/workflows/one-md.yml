@@ -1,38 +1,39 @@
-name: Append Markdown Files to README
+name: Append .md Files to README.md
 
 on:
   push:
-    paths:
-      - '**/*.md'  # Trigger on changes to Markdown files
-  workflow_dispatch:  # Manual trigger option
+    branches:
+      - main  # You can change this to whichever branch you want to trigger the workflow from
 
 jobs:
-  append-md:
+  append-docs:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3  # Ensure the repo is available
+        uses: actions/checkout@v2
 
-      - name: Append all .md files to README.md
+      - name: Append markdown files to README.md
         run: |
-          output="README.md"
-          temp_append="__append.md"  # Temporary file to collect all the content
+          # Create a temporary section header for additional documentation
+          echo -e "\n## Additional Documentation\n" >> README.md
 
-          # Step 1: Collect content from all .md files (excluding README.md) into a temporary file
-          find . -type f -name "*.md" ! -name "README.md" | sort -V | xargs cat > "$temp_append"  # Concatenate contents
+          # Initialize a counter for numbering the files
+          count=1
 
-          # Step 2: Append the collected content to README.md
-          echo -e "\n\n<!-- APPENDED CONTENT -->\n" >> "$output"  # Add a marker for where new content starts
-          cat "$temp_append" >> "$output"  # Append the content from the temporary file
+          # Loop over all .md files except README.md and append them to README.md
+          for file in $(ls *.md | grep -v 'README.md' | sort); do
+            # Append numbered list entry and file content to README.md
+            echo -e "$count. **$file**" >> README.md
+            cat "$file" >> README.md
+            echo -e "\n---\n" >> README.md
+            ((count++))
+          done
 
-          # Step 3: Clean up the temporary file
-          rm -f "$temp_append"
-
-      - name: Commit and push updated README.md
+      - name: Commit changes to README.md
         run: |
-          git config --global user.name "github-actions"  # Set the username for the commit
-          git config --global user.email "github-actions@github.com"  # Set the email for the commit
-          git add README.md  # Stage the changes to README.md
-          git diff --cached --quiet && echo "No changes to commit" || git commit -m "Append .md file contents to README.md"  # Commit changes if there are any
-          git push  # Push the changes to the remote repository
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add README.md
+          git commit -m "Update README.md with additional documentation"
+          git push
