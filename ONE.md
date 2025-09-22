@@ -4,6 +4,7 @@ I’ll post whenever I’m ready, making sure to revise and reflect on past word
 
 -------------
 
+### File: file.md
 1. Vicarious
 2. Rationalize
 3. Gregarious
@@ -17,6 +18,7 @@ I’ll post whenever I’m ready, making sure to revise and reflect on past word
 
 -------------
 
+### File: file.md
 1. Abase
 2. Abash
 3. Abate
@@ -30,6 +32,7 @@ I’ll post whenever I’m ready, making sure to revise and reflect on past word
 
 -------------
 
+### File: file.md
 1. Abscission
 2. Abscond
 3. Abstemious
@@ -43,6 +46,7 @@ I’ll post whenever I’m ready, making sure to revise and reflect on past word
 
 -------------
 
+### File: file.md
 1. Adulterate
 2. Aesthetic
 3. Affected
@@ -56,6 +60,7 @@ I’ll post whenever I’m ready, making sure to revise and reflect on past word
 
 -------------
 
+### File: file.md
 1. Aberrant
 2. Cacophony
 3. Equivocate
@@ -69,6 +74,7 @@ I’ll post whenever I’m ready, making sure to revise and reflect on past word
 
 -------------
 
+### File: file.md
 1. Iconoclast
 2. Juxtapose
 3. Magnanimous
@@ -82,6 +88,7 @@ I’ll post whenever I’m ready, making sure to revise and reflect on past word
 
 -------------
 
+### File: file.md
 1. Recalcitrant
 2. Sycophant
 3. Tenuous
@@ -95,6 +102,7 @@ I’ll post whenever I’m ready, making sure to revise and reflect on past word
 
 -------------
 
+### File: file.md
 1. Censure
 2. Indulgence
 3. Reckless
@@ -108,6 +116,7 @@ I’ll post whenever I’m ready, making sure to revise and reflect on past word
 
 -------------
 
+### File: file.md
 1. Harangue
 2. Impetuous
 3. Jocular
@@ -121,6 +130,7 @@ I’ll post whenever I’m ready, making sure to revise and reflect on past word
 
 -------------
 
+### File: file.md
 1. Smile
 2. Grin
 3. Chuckle
@@ -134,6 +144,7 @@ I’ll post whenever I’m ready, making sure to revise and reflect on past word
 
 -------------
 
+### File: file.md
 1. Awake
 2. Drowse
 3. Doze
@@ -153,6 +164,7 @@ I’ll post whenever I’m ready, making sure to revise and reflect on past word
 
 -------------
 
+### File: file.md
 1. Egoist
 2. Egotist
 3. Altruist
