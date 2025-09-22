@@ -1,12 +1,10 @@
 
-### File: ./README.md
 
 This project is dedicated to learning 10 new English words at a time. 
 I’ll post whenever I’m ready, making sure to revise and reflect on past words. A sustainable way to grow vocabulary without the daily pressure.
 
 -------------
 
-### File: ./list1.md
 
 Vicarious
 Rationalize
@@ -21,7 +19,6 @@ Effete
 
 -------------
 
-### File: ./list10.md
 
 Abase
 Abash
@@ -36,7 +33,6 @@ Abjure
 
 -------------
 
-### File: ./list11.md
 
 Abscission
 Abscond
@@ -51,7 +47,6 @@ Admonish
 
 -------------
 
-### File: ./list12.md
 
 Adulterate
 Aesthetic
@@ -66,7 +61,6 @@ Alleviate
 
 -------------
 
-### File: ./list2.md
 
 Aberrant
 Cacophony
@@ -81,7 +75,6 @@ Stir/Steer/Sway
 
 -------------
 
-### File: ./list3.md
 
 Iconoclast
 Juxtapose
@@ -96,7 +89,6 @@ Subtle
 
 -------------
 
-### File: ./list4.md
 
 Recalcitrant
 Sycophant
@@ -111,7 +103,6 @@ Belie
 
 -------------
 
-### File: ./list5.md
 
 Censure
 Indulgence
@@ -126,7 +117,6 @@ Eloquent/Articulate
 
 -------------
 
-### File: ./list6.md
 
 Harangue
 Impetuous
@@ -141,7 +131,6 @@ pellucid
 
 -------------
 
-### File: ./list7.md
 
 Smile
 Grin
@@ -156,7 +145,6 @@ Titter
 
 -------------
 
-### File: ./list8.md
 
 Awake
 Drowse
@@ -171,7 +159,6 @@ Dream
 
 -------------
 
-### File: ./list9.md
 
 Egoist
 Egotist
