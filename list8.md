@@ -1,7 +1,7 @@
 Awake
 Drowse
-Doze   (unintentional sleep)
-Snooze (intentional nap)
+Doze
+Snooze
 Catnap
 Nap
 Siesta
