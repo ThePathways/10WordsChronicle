@@ -3,8 +3,8 @@ name: Append Markdown Files to README
 on:
   push:
     paths:
-      - '**/*.md'
-  workflow_dispatch:
+      - '**/*.md'  # Trigger on changes to Markdown files
+  workflow_dispatch:  # Manual trigger option
 
 jobs:
   append-md:
@@ -12,28 +12,27 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3  # Ensure the repo is available
 
       - name: Append all .md files to README.md
         run: |
           output="README.md"
-          temp_append="__append.md"
+          temp_append="__append.md"  # Temporary file to collect all the content
 
-          # Step 1: Collect content from all .md files (except README.md) into a temporary file
-          find . -type f -name "*.md" ! -name "README.md" | sort -V | xargs cat > "$temp_append"
+          # Step 1: Collect content from all .md files (excluding README.md) into a temporary file
+          find . -type f -name "*.md" ! -name "README.md" | sort -V | xargs cat > "$temp_append"  # Concatenate contents
 
-          # Step 2: Append the content from temp_append to README.md
-          # Ensure there's no conflict between reading and writing by using a temporary file
-          echo "" >> "$output"  # Add a newline before appending
-          cat "$temp_append" >> "$output"
+          # Step 2: Append the collected content to README.md
+          echo -e "\n\n<!-- APPENDED CONTENT -->\n" >> "$output"  # Add a marker for where new content starts
+          cat "$temp_append" >> "$output"  # Append the content from the temporary file
 
-          # Step 3: Clean up temporary file
+          # Step 3: Clean up the temporary file
           rm -f "$temp_append"
 
       - name: Commit and push updated README.md
         run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
-          git add README.md
-          git diff --cached --quiet && echo "No changes to commit" || git commit -m "Append .md file contents to README.md"
-          git push
+          git config --global user.name "github-actions"  # Set the username for the commit
+          git config --global user.email "github-actions@github.com"  # Set the email for the commit
+          git add README.md  # Stage the changes to README.md
+          git diff --cached --quiet && echo "No changes to commit" || git commit -m "Append .md file contents to README.md"  # Commit changes if there are any
+          git push  # Push the changes to the remote repository
