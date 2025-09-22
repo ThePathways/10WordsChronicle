@@ -18,7 +18,6 @@ jobs:
           output="ONE.md"
           echo "" > "$output"
           find . -type f -name "*.md" ! -name "$output" | sort | while read -r file; do
-            echo "### File: $file" >> "$output"
             echo "" >> "$output"
             cat "$file" >> "$output"
             echo -e "\n-------------\n" >> "$output"
