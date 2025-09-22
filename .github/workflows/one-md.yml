@@ -18,9 +18,15 @@ jobs:
           output="ONE.md"
           echo "" > "$output"
           find . -type f -name "*.md" ! -name "$output" | sort | while read -r file; do
-            echo "" >> "$output"
-            tr ' ' '\n' < "$file" | nl -w1 -s'. ' >> "$output"
-            echo -e "\n-------------\n" >> "$output"
+            if [[ "$file" == "./README.md" ]]; then
+              # Just append the special file content as-is, no numbering
+              cat "$file" >> "$output"
+              echo -e "\n-------------\n" >> "$output"
+            else
+              # Number words for all other files
+              tr ' ' '\n' < "$file" | nl -w1 -s'. ' >> "$output"
+              echo -e "\n-------------\n" >> "$output"
+            fi
           done
 
       - name: Commit and push ONE.md
