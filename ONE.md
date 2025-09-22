@@ -1,46 +1,8 @@
 
-
-1. This
-2. project
-3. is
-4. dedicated
-5. to
-6. learning
-7. 10
-8. new
-9. English
-10. words
-11. at
-12. a
-13. time.
-   
-14. I’ll
-15. post
-16. whenever
-17. I’m
-18. ready,
-19. making
-20. sure
-21. to
-22. revise
-23. and
-24. reflect
-25. on
-26. past
-27. words.
-28. A
-29. sustainable
-30. way
-31. to
-32. grow
-33. vocabulary
-34. without
-35. the
-36. daily
-37. pressure.
+This project is dedicated to learning 10 new English words at a time. 
+I’ll post whenever I’m ready, making sure to revise and reflect on past words. A sustainable way to grow vocabulary without the daily pressure.
 
 -------------
-
 
 1. Vicarious
 2. Rationalize
@@ -55,7 +17,6 @@
 
 -------------
 
-
 1. Abase
 2. Abash
 3. Abate
@@ -68,7 +29,6 @@
 10. Abjure
 
 -------------
-
 
 1. Abscission
 2. Abscond
@@ -83,7 +43,6 @@
 
 -------------
 
-
 1. Adulterate
 2. Aesthetic
 3. Affected
@@ -96,7 +55,6 @@
 10. Alleviate
 
 -------------
-
 
 1. Aberrant
 2. Cacophony
@@ -111,7 +69,6 @@
 
 -------------
 
-
 1. Iconoclast
 2. Juxtapose
 3. Magnanimous
@@ -124,7 +81,6 @@
 10. Subtle
 
 -------------
-
 
 1. Recalcitrant
 2. Sycophant
@@ -139,7 +95,6 @@
 
 -------------
 
-
 1. Censure
 2. Indulgence
 3. Reckless
@@ -152,7 +107,6 @@
 10. Eloquent/Articulate
 
 -------------
-
 
 1. Harangue
 2. Impetuous
@@ -167,7 +121,6 @@
 
 -------------
 
-
 1. Smile
 2. Grin
 3. Chuckle
@@ -180,7 +133,6 @@
 10. Titter
 
 -------------
-
 
 1. Awake
 2. Drowse
@@ -200,7 +152,6 @@
 14. Dream
 
 -------------
-
 
 1. Egoist
 2. Egotist
