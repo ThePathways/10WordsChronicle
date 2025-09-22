@@ -9,31 +9,32 @@ on:
 jobs:
   append-md:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Append all other .md files content to README.md
+      - name: Append all .md files to README.md
         run: |
           output="README.md"
           temp_append="__append.md"
 
-          # Collect content of all md files except README.md into temp file
+          # Collect content of all .md files (except README.md)
           find . -type f -name "*.md" ! -name "README.md" | sort -V | xargs cat > "$temp_append"
 
-          # Append temp content to README.md only if it changes the file
-          if ! tail -n +$(($(wc -l < "$output") + 1)) "$temp_append" | cmp -s - "$output"; then
-            echo "" >> "$output"
+          # If the content changes, append to README.md
+          if ! cmp -s "$output" "$temp_append"; then
+            echo "" >> "$output"  # Add a newline before appending
             cat "$temp_append" >> "$output"
           fi
 
+          # Clean up temporary file
           rm -f "$temp_append"
 
-      - name: Commit and push if README.md changed
+      - name: Commit and push updated README.md
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git add README.md
-          git diff --cached --quiet || git commit -m "Append markdown files to README.md"
+          git diff --cached --quiet && echo "No changes to commit" || git commit -m "Append .md file contents to README.md"
           git push
-
