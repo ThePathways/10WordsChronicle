@@ -3,34 +3,39 @@ name: ONE Markdown Files
 on:
   push:
     paths:
-      - '**/*.md'  # Trigger on Markdown file changes
-  workflow_dispatch:  # ✅ Manual trigger via GitHub UI
+      - '**/*.md'
+  workflow_dispatch:
 
 jobs:
   combine:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: ONE .md files into ONE.md
+      - name: Regenerate README.md with appended .md files
         run: |
-          temp_output="ONE.md"
-          echo "" > "$temp_output"
-          find . -type f -name "*.md" ! -name "README.md" | sort -V | while read -r file; do
-            echo "### File: $(basename "$file")" >> "$temp_output"
-            tr ' ' '\n' < "$file" | nl -w1 -s'. ' >> "$temp_output"
-            echo -e "\n-------------\n" >> "$temp_output"
+          original_readme="README.md"
+          temp_combined="__temp.md"
+
+          # Backup original README content
+          cp "$original_readme" "$temp_combined"
+
+          # Append processed .md files (excluding README.md and one.md)
+          find . -type f -name "*.md" ! -name "README.md" ! -name "one.md" | sort -V | while read -r file; do
+            echo -e "\n### File: $(basename "$file")" >> "$temp_combined"
+            tr ' ' '\n' < "$file" | nl -w1 -s'. ' >> "$temp_combined"
+            echo -e "\n-------------\n" >> "$temp_combined"
           done
 
-          # Append to README.md
-          cat "$temp_output" >> README.md
-          rm "$temp_output"
+          # Replace README.md with the new version
+          mv "$temp_combined" "$original_readme"
 
       - name: Commit and push updated README.md
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git add README.md
-          git diff --cached --quiet && echo "No changes to commit" || git commit -m "Auto-update README.md with processed .md files"
+          git diff --cached --quiet && echo "No changes to commit" || git commit -m "Update README.md with processed .md files"
           git push
