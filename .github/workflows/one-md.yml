@@ -16,31 +16,35 @@ jobs:
 
       - name: Regenerate README.md with appended .md files
         run: |
-          original_readme="README.md"
-          temp_generated="__generated.md"
-          final_combined="__combined.md"
+          marker="<!-- APPENDED-CONTENT-START -->"
+          temp_static="__static.md"
+          temp_appended="__appended.md"
+          output_readme="README.md"
 
-          # Step 1: Generate combined content from all other .md files (except README.md)
-          echo "" > "$temp_generated"
+          # Extract static content (everything before the marker)
+          awk "/$marker/{exit} {print}" "$output_readme" > "$temp_static"
+
+          # Add the marker back at the end of static content
+          echo -e "\n$marker\n" >> "$temp_static"
+
+          # Create appended content from all other .md files (except README.md)
+          echo "" > "$temp_appended"
           find . -type f -name "*.md" ! -name "README.md" | sort -V | while read -r file; do
-            echo -e "\n### File: $(basename "$file")" >> "$temp_generated"
-            tr ' ' '\n' < "$file" | nl -w1 -s'. ' >> "$temp_generated"
-            echo -e "\n-------------\n" >> "$temp_generated"
+            echo -e "\n### File: $(basename "$file")" >> "$temp_appended"
+            cat "$file" >> "$temp_appended"
+            echo -e "\n-------------\n" >> "$temp_appended"
           done
 
-          # Step 2: Concatenate original README.md + combined content into a new file
-          cat "$original_readme" "$temp_generated" > "$final_combined"
+          # Combine static content + marker + appended content into README.md
+          cat "$temp_static" "$temp_appended" > "$output_readme"
 
-          # Step 3: Overwrite README.md with the new combined file
-          mv "$final_combined" "$original_readme"
-
-          # Step 4: Clean up temporary generated file
-          rm -f "$temp_generated"
+          # Cleanup temporary files
+          rm -f "$temp_static" "$temp_appended"
 
       - name: Commit and push updated README.md
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git add README.md
-          git diff --cached --quiet && echo "No changes to commit" || git commit -m "Update README.md with processed .md files"
+          git diff --cached --quiet && echo "No changes to commit" || git commit -m "Update README.md with appended .md files"
           git push
