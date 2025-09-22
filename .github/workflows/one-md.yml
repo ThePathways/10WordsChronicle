@@ -15,25 +15,22 @@ jobs:
 
       - name: ONE .md files into ONE.md
         run: |
-          output="ONE.md"
-          echo "" > "$output"
-          find . -type f -name "*.md" ! -name "$output" | sort -V | while read -r file; do
-            if [[ "$file" == "./README.md" ]]; then
-              # Just append the special file content as-is, no numbering
-              cat "$file" >> "$output"
-              echo -e "\n-------------\n" >> "$output"
-            else
-              # Number words for all other files
-              echo "### File: $(basename "$file")" >> "$output"
-              tr ' ' '\n' < "$file" | nl -w1 -s'. ' >> "$output"
-              echo -e "\n-------------\n" >> "$output"
-            fi
+          temp_output="ONE.md"
+          echo "" > "$temp_output"
+          find . -type f -name "*.md" ! -name "README.md" | sort -V | while read -r file; do
+            echo "### File: $(basename "$file")" >> "$temp_output"
+            tr ' ' '\n' < "$file" | nl -w1 -s'. ' >> "$temp_output"
+            echo -e "\n-------------\n" >> "$temp_output"
           done
 
-      - name: Commit and push ONE.md
+          # Append to README.md
+          cat "$temp_output" >> README.md
+          rm "$temp_output"
+
+      - name: Commit and push updated README.md
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git add ONE.md
-          git diff --cached --quiet && echo "No changes to commit" || git commit -m "Auto-update ONE.md after .md change"
+          git add README.md
+          git diff --cached --quiet && echo "No changes to commit" || git commit -m "Auto-update README.md with processed .md files"
           git push
