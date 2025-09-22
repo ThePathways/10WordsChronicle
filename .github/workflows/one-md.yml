@@ -14,20 +14,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Regenerate README.md with appended .md files
+      - name: Regenerate README.md with appended .md files after marker
         run: |
           marker="<!-- APPENDED-CONTENT-START -->"
           temp_static="__static.md"
           temp_appended="__appended.md"
+          combined_temp="__combined.md"
           output_readme="README.md"
 
-          # Extract static content (everything before the marker)
+          # Extract static content before marker
           awk "/$marker/{exit} {print}" "$output_readme" > "$temp_static"
 
-          # Add the marker back at the end of static content
+          # Append the marker to static content
           echo -e "\n$marker\n" >> "$temp_static"
 
-          # Create appended content from all other .md files (except README.md)
+          # Generate appended content from other .md files
           echo "" > "$temp_appended"
           find . -type f -name "*.md" ! -name "README.md" | sort -V | while read -r file; do
             echo -e "\n### File: $(basename "$file")" >> "$temp_appended"
@@ -35,10 +36,13 @@ jobs:
             echo -e "\n-------------\n" >> "$temp_appended"
           done
 
-          # Combine static content + marker + appended content into README.md
-          cat "$temp_static" "$temp_appended" > "$output_readme"
+          # Combine static + appended content safely
+          cat "$temp_static" "$temp_appended" > "$combined_temp"
 
-          # Cleanup temporary files
+          # Replace README.md with the new combined file
+          mv "$combined_temp" "$output_readme"
+
+          # Clean up temp files
           rm -f "$temp_static" "$temp_appended"
 
       - name: Commit and push updated README.md
