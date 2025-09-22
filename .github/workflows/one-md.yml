@@ -1,4 +1,4 @@
-name: ONE Markdown Files
+name: Append Markdown Files to README
 
 on:
   push:
@@ -7,48 +7,33 @@ on:
   workflow_dispatch:
 
 jobs:
-  combine:
+  append-md:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
+      - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Regenerate README.md with appended .md files after marker
+      - name: Append all other .md files content to README.md
         run: |
-          marker="<!-- APPENDED-CONTENT-START -->"
-          temp_static="__static.md"
-          temp_appended="__appended.md"
-          combined_temp="__combined.md"
-          output_readme="README.md"
+          output="README.md"
+          temp_append="__append.md"
 
-          # Extract static content before marker
-          awk "/$marker/{exit} {print}" "$output_readme" > "$temp_static"
+          # Collect content of all md files except README.md into temp file
+          find . -type f -name "*.md" ! -name "README.md" | sort -V | xargs cat > "$temp_append"
 
-          # Append the marker to static content
-          echo -e "\n$marker\n" >> "$temp_static"
+          # Append temp content to README.md only if it changes the file
+          if ! tail -n +$(($(wc -l < "$output") + 1)) "$temp_append" | cmp -s - "$output"; then
+            echo "" >> "$output"
+            cat "$temp_append" >> "$output"
+          fi
 
-          # Generate appended content from other .md files
-          echo "" > "$temp_appended"
-          find . -type f -name "*.md" ! -name "README.md" | sort -V | while read -r file; do
-            echo -e "\n### File: $(basename "$file")" >> "$temp_appended"
-            cat "$file" >> "$temp_appended"
-            echo -e "\n-------------\n" >> "$temp_appended"
-          done
+          rm -f "$temp_append"
 
-          # Combine static + appended content safely
-          cat "$temp_static" "$temp_appended" > "$combined_temp"
-
-          # Replace README.md with the new combined file
-          mv "$combined_temp" "$output_readme"
-
-          # Clean up temp files
-          rm -f "$temp_static" "$temp_appended"
-
-      - name: Commit and push updated README.md
+      - name: Commit and push if README.md changed
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git add README.md
-          git diff --cached --quiet && echo "No changes to commit" || git commit -m "Update README.md with appended .md files"
+          git diff --cached --quiet || git commit -m "Append markdown files to README.md"
           git push
+
