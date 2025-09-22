@@ -3,7 +3,8 @@ name: Combine Markdown Files
 on:
   push:
     paths:
-      - '**/*.md'  # Trigger only when .md files change
+      - '**/*.md'  # Trigger on Markdown file changes
+  workflow_dispatch:  # ✅ Manual trigger via GitHub UI
 
 jobs:
   combine:
@@ -16,7 +17,6 @@ jobs:
         run: |
           output="one.md"
           echo "" > "$output"
-          # Find all markdown files excluding 'combined.md'
           find . -type f -name "*.md" ! -name "$output" | sort | while read -r file; do
             echo "### File: $file" >> "$output"
             echo "" >> "$output"
