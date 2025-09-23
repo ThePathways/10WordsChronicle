@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main  # You can change this to whichever branch you want to trigger the workflow from
+    paths:
+      - '**/*.md'  # Trigger only when .md files are modified/added
+      
   workflow_dispatch:  # This allows manual trigger from GitHub UI
 
 jobs:
