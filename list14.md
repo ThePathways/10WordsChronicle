@@ -1,0 +1,10 @@
+Anacronism
+Analgesic
+Analogous
+Anarchy
+Anodyne
+Anomalous
+Anomie
+Antecedent
+Antidiluvian
+Antipathy
