@@ -17,7 +17,7 @@ jobs:
       - name: Append markdown files to README.md
         run: |
           # Create a temporary section header for additional documentation
-          echo -e "\n## Additional Documentation\n" >> README.md
+          echo -e "\n## Wordlists\n" >> README.md
 
           # Initialize a counter for numbering the files
           count=1
