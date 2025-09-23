@@ -1,0 +1,10 @@
+Apathy
+Apex
+Apogee
+Apothegm
+Apease
+Appellation
+Apposite
+Apprise
+Approbation
+Appropriate
